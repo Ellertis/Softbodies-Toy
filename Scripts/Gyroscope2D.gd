@@ -6,15 +6,21 @@ extends Node2D
 func _physics_process(delta):
 	#return - debug for testing with classic gravity
 	#return
-	var gravity: Vector3 = Input.get_gravity()
-	if gravity != null :
-		var debug_text: String = "X: " + str(roundf(gravity.x)) + " Y: " + str(roundf(gravity.y)) + " Z: "+ str(roundf(gravity.z))
+	var InputGravity: Vector3 = Input.get_gravity()
+	if InputGravity != null :
+		var debug_text: String = "X: " + str(roundf(InputGravity.x)) + " Y: " + str(roundf(InputGravity.y)) + " Z: "+ str(roundf(InputGravity.z))
 		debug_label.text = debug_text
-		
-		gravity.z = 0
-		gravity.y = -gravity.y #IMPORTANT inverse Y
-		gravity = gravity.normalized()
-		PhysicsServer2D.area_set_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, gravity)
+	
+	var OutputGravity: Vector2 = Vector2(InputGravity.x,-InputGravity.y)
+	PhysicsServer2D.area_set_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, OutputGravity.normalized())
+	
+	var OutputGravityLength: Vector2# = OutputGravity.limit_length(9.8)
+	OutputGravityLength = OutputGravity*100 #Convert m/s to px/s
+	PhysicsServer2D.area_set_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY, OutputGravityLength.length())
+
 
 func _process(delta):
 	fpscounter.text = "FPS: %d" % Engine.get_frames_per_second()
+
+func _on_reset_button_pressed():
+	get_tree().reload_current_scene()
