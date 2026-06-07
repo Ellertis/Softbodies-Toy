@@ -4,6 +4,8 @@ extends Node2D
 @export var fpscounter: Label
 
 func _physics_process(delta):
+	#return - debug for testing with classic gravity
+	#return
 	var gravity: Vector3 = Input.get_gravity()
 	if gravity != null :
 		var debug_text: String = "X: " + str(roundf(gravity.x)) + " Y: " + str(roundf(gravity.y)) + " Z: "+ str(roundf(gravity.z))
