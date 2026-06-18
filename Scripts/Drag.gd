@@ -2,6 +2,7 @@ extends Node2D
 
 @export var drag_strength:float = 4
 @export var damping:float = 0.5
+@export var rotation_damping_factor:float = 0.02
 
 var last_mouse_pos:Vector2 = Vector2.ZERO
 var mouse_velocity:Vector2 = Vector2.ZERO
@@ -21,13 +22,15 @@ func _physics_process(delta):
 			var offset = target - bone.global_position
 			var spring_force = offset * drag_strength
 			var damping_force = -bone.linear_velocity * damping
-			bone.apply_central_force(spring_force + damping_force)
+			bone.apply_force(spring_force + damping_force, -mouse_velocity * rotation_damping_factor)
 
 func _unhandled_input(event):
 	#InputEventMouseButton
 	#InputEventScreenTouch
 	if event is InputEventMouseButton:
 		if event.is_pressed():
+			bones.clear()
+			displacements.clear()
 			var body = get_body_under_mouse()
 			if body is RigidBody2D && body.get_parent() is SoftBody2D:
 				print("Clicked:", body.name)
@@ -55,8 +58,6 @@ func get_body_under_mouse():
 	return null
 
 func _get_displacements(sb: SoftBody2D,rg: RigidBody2D):
-	bones.clear()
-	displacements.clear()
 	var i:int=0
 	for child in sb.get_children():
 		if child is RigidBody2D:
