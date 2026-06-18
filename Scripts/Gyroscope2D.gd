@@ -1,27 +1,32 @@
 extends Node2D
 
-@export var debug_gyroscope: Label
-@export var fpscounter: Label
+@export var debug_gravity: Label
 @export var debug_gravity_direction: Label
 @export var debug_accelerometer: Label
+@export var degub_accelerometerLength: Label
+@export var fpscounter: Label
 
 func _physics_process(_delta):
-	var InputGravity: Vector3 = Input.get_gravity()
-	Input.get_gyroscope()
-	var InputAcceleration: Vector3 = Input.get_accelerometer()
-	Input.get_magnetometer()
-	Input.get_gravity()
-	debug_gyroscope.text = "Gyroscope value : " + "X: " + str(roundf(InputGravity.x)) + " Y: " + str(roundf(InputGravity.y)) + " Z: " + str(roundf(InputGravity.z))
-	debug_accelerometer.text = "Accelerometer : " + "X: " +str(roundf(InputAcceleration.x)) + " Y: " + str(roundf(InputAcceleration.y)) + " Z: " + str(roundf(InputAcceleration.z))
+	var InputGravity: Vector3 = Input.get_gravity() #directional vector of gravity
+	var InputGyroscope: Vector3 =Input.get_gyroscope() #angular velocity
+	var InputAcceleration: Vector3 = Input.get_accelerometer() #spacial velocity
+	var InputMagnetometer: Vector3 = Input.get_magnetometer()
+	debug_gravity.text = "Gyroscope value : " + "X: " + str(roundf(InputGravity.x)) + " Y: " + str(roundf(InputGravity.y)) + " Z: " + str(roundf(InputGravity.z))
 	
+	#Gravity direction
 	var OutputGravity: Vector2 = Vector2(InputGravity.x,-InputGravity.y)
-	var debug_gravity_direction_text: String = "Gravity Direction : " + "X: " + str(OutputGravity.x) + " Y: " + str(OutputGravity.y)
-	debug_gravity_direction.text = debug_gravity_direction_text
+	debug_gravity_direction.text = "Gravity Direction : " + "X: " + str(roundf(OutputGravity.x)) + " Y: " + str(roundf(OutputGravity.y))
 	PhysicsServer2D.area_set_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, OutputGravity.normalized())
 	
+	#Gravity force relative to a rest pose when X&Y = 0
 	var OutputGravityLength: Vector2 = OutputGravity*100 #Convert m/s to px/s
 	PhysicsServer2D.area_set_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY, OutputGravityLength.length())
-
+	
+	#Acceleration
+	#Negate gravity to get relative acceleration of the phone
+	var OutputAcceleration: Vector3 = InputGravity - InputAcceleration
+	debug_accelerometer.text = "Accelerometer : " + "X: " +str(roundf(OutputAcceleration.x)) + " Y: " + str(roundf(OutputAcceleration.y)) + " Z: " + str(roundf(OutputAcceleration.z))
+	degub_accelerometerLength.text = "Accel Length|Squared : " + str(roundf(OutputAcceleration.length())) + " | " + str(roundf(OutputAcceleration.length_squared()))
 
 func _process(_delta):
 	fpscounter.text = "FPS: %d" % Engine.get_frames_per_second()
