@@ -514,13 +514,13 @@ modifications/12 = SubResource("SkeletonModification2DLookAt_anxd3")
 resource_local_to_scene = true
 size = Vector2(71.25, 71.25)
 
-[node name="Node2D" type="Node2D" unique_id=1037800986 node_paths=PackedStringArray("debug_gravity", "debug_gravity_direction", "debug_accelerometer", "degub_accelerometerLength", "fpscounter")]
+[node name="Node2D" type="Node2D" unique_id=1037800986 node_paths=PackedStringArray("debug_gravity", "debug_gravity_direction", "debug_accelerometer", "debug_accelerometerLength", "debug_fpscounter")]
 script = ExtResource("1_khmw0")
 debug_gravity = NodePath("DebugGravity")
 debug_gravity_direction = NodePath("DebugGravityDirection")
 debug_accelerometer = NodePath("DebugAccelerometer")
-degub_accelerometerLength = NodePath("DebugAccelerometerLength&LengthSquared")
-fpscounter = NodePath("DebugFPS")
+debug_accelerometerLength = NodePath("DebugAccelerometerLength&LengthSquared")
+debug_fpscounter = NodePath("DebugFPS")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1614753435]
 offset_right = 1080.0
@@ -2588,8 +2588,8 @@ modification_stack = SubResource("SkeletonModificationStack2D_yd5mf")
 
 [node name="Bone-0" type="Bone2D" parent="SoftBodyMomo/Skeleton2D" unique_id=283190225]
 position = Vector2(66.51254, 76.7674)
-rotation = 0.5227137
-scale = Vector2(0.9999936, 0.9999959)
+rotation = 0.52271384
+scale = Vector2(0.99999356, 0.99999577)
 rest = Transform2D(0.866468, 0.4992326, -0.4992326, 0.866468, 66.51257, 76.76741)
 auto_calculate_length_and_angle = false
 length = 60.0
@@ -2631,7 +2631,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-3" type="Bone2D" parent="SoftBodyMomo/Skeleton2D" unique_id=177627032]
 position = Vector2(62.34839, 173.9906)
 rotation = 2.377527
-scale = Vector2(0.9999959, 0.9999949)
+scale = Vector2(0.99999577, 0.9999947)
 rest = Transform2D(-0.72202796, 0.6918639, -0.6918639, -0.72202796, 62.348396, 173.9906)
 auto_calculate_length_and_angle = false
 length = 60.0
@@ -2645,7 +2645,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-4" type="Bone2D" parent="SoftBodyMomo/Skeleton2D" unique_id=104270257]
 position = Vector2(29.487518, 205.4786)
 rotation = -1.5172428
-scale = Vector2(0.9999964, 0.9999964)
+scale = Vector2(0.9999963, 0.9999963)
 rest = Transform2D(0.053527348, -0.9985664, 0.9985664, 0.053527348, 29.487535, 205.47862)
 auto_calculate_length_and_angle = false
 length = 60.0
@@ -2757,7 +2757,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-12" type="Bone2D" parent="SoftBodyMomo/Skeleton2D" unique_id=1371762818]
 position = Vector2(136.16144, 224.6897)
 rotation = -2.435844
-scale = Vector2(0.9999948, 0.99999565)
+scale = Vector2(0.99999475, 0.99999565)
 rest = Transform2D(-0.76112753, -0.64860225, 0.64860225, -0.76112753, 136.16145, 224.68968)
 auto_calculate_length_and_angle = false
 length = 60.0
@@ -2771,7 +2771,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-13" type="Bone2D" parent="SoftBodyMomo/Skeleton2D" unique_id=443691216]
 position = Vector2(100.89697, 253.03488)
 rotation = -1.4983722
-scale = Vector2(0.9999899, 0.9999899)
+scale = Vector2(0.9999897, 0.9999897)
 rest = Transform2D(0.072359405, -0.99737865, 0.99737865, 0.072359405, 100.897, 253.03488)
 auto_calculate_length_and_angle = false
 length = 60.0
@@ -3533,8 +3533,8 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone-3" type="Bone2D" parent="SoftBody2Snow/Skeleton2D" unique_id=1274343434]
 position = Vector2(112.30475, 46.35025)
-rotation = -0.33118978
-scale = Vector2(0.99999946, 0.99999946)
+rotation = -0.33118972
+scale = Vector2(0.99999934, 0.99999934)
 rest = Transform2D(0.9456561, -0.3251685, 0.3251685, 0.9456561, 112.30475, 46.350227)
 auto_calculate_length_and_angle = false
 length = 60.0
@@ -3631,7 +3631,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-10" type="Bone2D" parent="SoftBody2Snow/Skeleton2D" unique_id=1944508610]
 position = Vector2(195.84735, 90.173035)
 rotation = 1.553883
-scale = Vector2(0.9999993, 0.9999993)
+scale = Vector2(0.99999905, 0.99999905)
 rest = Transform2D(0.016912565, 0.99985695, -0.99985695, 0.016912565, 195.84735, 90.17303)
 auto_calculate_length_and_angle = false
 length = 60.0
